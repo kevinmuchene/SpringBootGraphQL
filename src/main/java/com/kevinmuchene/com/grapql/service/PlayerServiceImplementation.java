@@ -19,7 +19,7 @@ public class PlayerServiceImplementation {
 
     private void addTemporaryData() {
         this.playerRepository.save(new Player(1, "Marcas Rashford", 24, "Forward", teamServiceImplementation.findById(1L)));
-        this.playerRepository.save(new Player(2, "Lionel Messi", 34, "Forward", new Team()));
+        this.playerRepository.save(new Player(2, "Lionel Messi", 34, "Forward", teamServiceImplementation.findById(2L)));
     }
 
     public Player createPlayer(Player player, Team team) {
