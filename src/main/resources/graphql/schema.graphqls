@@ -1,0 +1,56 @@
+type Competition {
+    id: ID!
+    name: String!
+    price: Float!
+    country: String!
+    numberOfTeams: Int!
+}
+
+type Team {
+    id: ID!
+    name: String!
+    nickname: String!
+    stadium: String!
+    city: String!
+    players: [Player]
+}
+
+input TeamInput {
+    name: String!
+    nickname: String!
+    stadium: String!
+    city: String!
+}
+
+type Player {
+    id: ID!
+    name: String!
+    age: Int!
+    playPosition: String!
+    team: Team!
+}
+
+input PlayerInput{
+    name: String!
+    age: Int!
+    playPosition: String!
+}
+
+type Query {
+    competitions: [Competition]!
+    competitionById(id: ID): Competition
+    teams: [Team]!
+    teamById(id: ID): Team
+    players: [Player]!
+    playerById(id: ID): Player
+}
+
+input CreatePlayerInput{
+    player: PlayerInput!
+    teamId: ID!
+}
+type Mutation{
+    createPlayer(input: CreatePlayerInput) : Player!
+    createTeam(input: TeamInput): Team
+}
+
