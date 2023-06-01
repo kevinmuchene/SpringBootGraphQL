@@ -15,8 +15,8 @@ public class CompetitionServiceImplementation {
     }
 
     private void addTemporaryData(){
-        this.competitionRepository.save(new Competition(1, "Champions League", 5000, "Instabul", 32));
-        this.competitionRepository.save(new Competition(2, "Premier League", 4000, "England", 20));
+        this.competitionRepository.save(new Competition(1L, "Champions League", 5000, "Instabul", 32));
+        this.competitionRepository.save(new Competition(2L, "Premier League", 4000, "England", 20));
     }
 
     public Iterable<Competition> findAll() {
