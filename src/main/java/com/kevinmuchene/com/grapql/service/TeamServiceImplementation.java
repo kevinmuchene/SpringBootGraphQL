@@ -17,8 +17,8 @@ public class TeamServiceImplementation {
     }
 
     private void addTemporaryData(){
-        this.teamRepository.save(new Team(1, "Manchester United", "Red Devils", "Old Traford", "Manchester", new ArrayList<>()));
-        this.teamRepository.save(new Team(2, "Real Madrid", "Los Blanco", "Santiogo Bernabeu", "Madrid", new ArrayList<>()));
+        this.teamRepository.save(new Team(1, "Manchester United", "Red Devils", "Old Traford", "Manchester"));
+        this.teamRepository.save(new Team(2, "Real Madrid", "Los Blanco", "Santiogo Bernabeu", "Madrid"));
     }
 
     public Iterable<Team> findAll(){
