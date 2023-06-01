@@ -4,6 +4,7 @@ type Competition {
     price: Float!
     country: String!
     numberOfTeams: Int!
+    teams: [Team]
 }
 
 type Team {
@@ -13,6 +14,7 @@ type Team {
     stadium: String!
     city: String!
     players: [Player]
+    competitions: [Competition]
 }
 
 input TeamInput {
