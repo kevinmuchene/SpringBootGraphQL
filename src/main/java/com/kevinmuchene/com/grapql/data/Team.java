@@ -7,7 +7,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Entity
 @Table(name = "TEAMS")
 public class Team {
@@ -31,4 +31,31 @@ public class Team {
 
     @OneToMany(mappedBy = "team")
     private List<Player> playerList;
+
+//    @ManyToMany(mappedBy = "listOfTeams")
+//    @JoinColumn(name = "COMPETITION_ID")
+//    private List<Competition> listOfCompetitions;
+
+    @ManyToMany(mappedBy = "listOfTeams")
+    private List<Competition> listOfCompetitions;
+
+    public Team(long id, String name, String nickname, String stadium, String city) {
+        this.id = id;
+        this.name = name;
+        this.nickname = nickname;
+        this.stadium = stadium;
+        this.city = city;
+    }
+
+
+//    public void addCompetition(Competition competition) {
+//        listOfCompetitions.add(competition);
+//        competition.getListOfTeams().add(this);
+//    }
+//
+//    public void removeCompetition(Competition competition) {
+//        listOfCompetitions.remove(competition);
+//        competition.getListOfTeams().remove(this);
+//    }
+
 }
