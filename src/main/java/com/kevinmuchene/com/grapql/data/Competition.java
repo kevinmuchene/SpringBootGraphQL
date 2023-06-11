@@ -9,7 +9,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="COMPETITIONS")
 public class Competition {
 
 
@@ -30,7 +29,7 @@ public class Competition {
     @Column(name = "NUMBER_OF_TEAMS")
     private int numberOfTeams;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "competition_team",
             joinColumns = @JoinColumn(name = "competition_id"),
@@ -46,4 +45,15 @@ public class Competition {
         this.country = country;
         this.numberOfTeams = numberOfTeams;
     }
+
+    public void addTeam(Team team) {
+        listOfTeams.add(team);
+        team.getListOfCompetitions().add(this);
+    }
+
+    public void removeTeam(Team team) {
+        listOfTeams.remove(team);
+        team.getListOfCompetitions().remove(this);
+    }
+
 }
