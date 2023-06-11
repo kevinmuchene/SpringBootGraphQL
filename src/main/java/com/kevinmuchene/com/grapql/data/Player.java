@@ -7,10 +7,9 @@ import lombok.NoArgsConstructor;
 
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "PLAYERS")
+//@Table(name = "PLAYERS")
 public class Player {
 
     @Id
@@ -27,7 +26,15 @@ public class Player {
     @Column(name = "PLAY_POSITION")
     private String playPosition;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "TEAM_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "TEAM_ID")
     private Team team;
+
+
+    public Player(String name, int age, String playPosition, Team team) {
+        this.name = name;
+        this.age = age;
+        this.playPosition = playPosition;
+        this.team = team;
+    }
 }

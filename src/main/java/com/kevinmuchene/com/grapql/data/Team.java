@@ -3,13 +3,12 @@ package com.kevinmuchene.com.grapql.data;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
-//@AllArgsConstructor
 @Entity
-@Table(name = "TEAMS")
 public class Team {
 
     @Id
@@ -29,14 +28,16 @@ public class Team {
     @Column(name = "CITY")
     private String city;
 
-    @OneToMany(mappedBy = "team")
-    private List<Player> playerList;
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Player> players = new ArrayList<>();
+
+
 
 //    @ManyToMany(mappedBy = "listOfTeams")
 //    @JoinColumn(name = "COMPETITION_ID")
 //    private List<Competition> listOfCompetitions;
 
-    @ManyToMany(mappedBy = "listOfTeams")
+    @ManyToMany(mappedBy = "listOfTeams", fetch = FetchType.EAGER)
     private List<Competition> listOfCompetitions;
 
     public Team(long id, String name, String nickname, String stadium, String city) {
@@ -48,14 +49,14 @@ public class Team {
     }
 
 
-//    public void addCompetition(Competition competition) {
-//        listOfCompetitions.add(competition);
-//        competition.getListOfTeams().add(this);
-//    }
-//
-//    public void removeCompetition(Competition competition) {
-//        listOfCompetitions.remove(competition);
-//        competition.getListOfTeams().remove(this);
-//    }
+    public void addCompetition(Competition competition) {
+        listOfCompetitions.add(competition);
+        competition.getListOfTeams().add(this);
+    }
+
+    public void removeCompetition(Competition competition) {
+        listOfCompetitions.remove(competition);
+        competition.getListOfTeams().remove(this);
+    }
 
 }

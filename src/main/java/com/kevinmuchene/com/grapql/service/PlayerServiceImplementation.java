@@ -16,16 +16,15 @@ public class PlayerServiceImplementation {
         this.teamServiceImplementation = teamServiceImplementation;
         addTemporaryData();
     }
-
     private void addTemporaryData() {
-        this.playerRepository.save(new Player(1, "Marcas Rashford", 24, "Forward", teamServiceImplementation.findById(1L)));
-        this.playerRepository.save(new Player(2, "Lionel Messi", 34, "Forward", teamServiceImplementation.findById(2L)));
+        this.playerRepository.save(new Player("Marcas Rashford", 24, "Forward", teamServiceImplementation.findById(1L)));
+        this.playerRepository.save(new Player("Lionel Messi", 34, "Forward", teamServiceImplementation.findById(2L)));
     }
 
     public Player createPlayer(Player player, Team team) {
         player.setTeam(team);
         return playerRepository.save(player);
-        //testing
+
     }
 
     public Iterable<Player> findAll() {

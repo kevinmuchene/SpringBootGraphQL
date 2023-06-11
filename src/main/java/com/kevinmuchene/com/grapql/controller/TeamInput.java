@@ -1,7 +1,6 @@
 package com.kevinmuchene.com.grapql.controller;
 
 import com.kevinmuchene.com.grapql.data.Team;
-import jakarta.persistence.Column;
 import lombok.Getter;
 import lombok.Setter;
 
