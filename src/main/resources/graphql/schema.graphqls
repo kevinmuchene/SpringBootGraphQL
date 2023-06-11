@@ -1,3 +1,5 @@
+#ALWAYS START WITH SCHEMA---> SCHEMA BASED
+
 type Competition {
     id: ID!
     name: String!
@@ -5,6 +7,18 @@ type Competition {
     country: String!
     numberOfTeams: Int!
     teams: [Team]
+}
+
+input CompetitionInput {
+    name: String!
+    price: Float!
+    country: String!
+    numberOfTeams: Int!
+}
+
+input AddTeamToCompetitionInput {
+    competitionId: ID!
+    teamId: ID!
 }
 
 type Team {
@@ -51,8 +65,11 @@ input CreatePlayerInput{
     player: PlayerInput!
     teamId: ID!
 }
+
 type Mutation{
     createPlayer(input: CreatePlayerInput) : Player!
-    createTeam(input: TeamInput): Team
+    createTeam(input: TeamInput): Team!
+    createCompetition(input: CompetitionInput): Competition!
+    addTeamToCompetition(input: AddTeamToCompetitionInput): Competition!
 }
 
