@@ -1,16 +1,20 @@
 package com.kevinmuchene.com.grapql.service;
 
 import com.kevinmuchene.com.grapql.data.Competition;
+import com.kevinmuchene.com.grapql.data.Team;
 import com.kevinmuchene.com.grapql.repository.CompetitionRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CompetitionServiceImplementation {
 
     private final CompetitionRepository competitionRepository;
+    private final TeamServiceImplementation teamServiceImplementation;
 
-    public CompetitionServiceImplementation(CompetitionRepository competitionRepository) {
+    public CompetitionServiceImplementation(CompetitionRepository competitionRepository, TeamServiceImplementation teamServiceImplementation) {
         this.competitionRepository = competitionRepository;
+        this. teamServiceImplementation = teamServiceImplementation;
         addTemporaryData();
     }
 
@@ -26,5 +30,21 @@ public class CompetitionServiceImplementation {
     public Competition findById(Long id) {
         return this.competitionRepository.findById(id).orElseThrow();
     }
+
+    public Competition createCompetition(Competition competition) {
+        return this.competitionRepository.save(competition);
+    }
+
+//    @Transactional
+//    public Competition addTeamToCompetition(Long competitionId, Long teamId) {
+//        Competition competition = findById(competitionId);
+//        Team team = this.teamServiceImplementation.findById(teamId);
+//
+//        competition.addTeam(team);
+//        team.addCompetition(competition);
+//
+//
+//        return competition;
+//    }
 
 }
